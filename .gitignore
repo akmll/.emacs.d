@@ -15,4 +15,13 @@
 /transient
 /auto-save-list
 /server
-
+/eshell
+/.cache
+/.extension
+/.dap-breakpoints
+/.lsp-session-v1
+/eln-cache
+/projects
+/local-snippets
+/image-dired
+/tramp

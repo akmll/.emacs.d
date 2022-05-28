@@ -9,7 +9,6 @@
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
 
 ;; Bootstrap config
-
 (require 'init-utils)
 (require 'init-site-lisp)
 (require 'init-elpa)
@@ -22,20 +21,31 @@
 (require 'init-misc)
 (require 'init-sessions)
 (require 'init-ivy)
-(require 'init-projectile)
+(require 'init-lsp)
+(require 'init-dap)
 (require 'init-editting)
 (require 'init-vc)
+(require 'init-realgud)
+(require 'init-org)
+(require 'init-projectile)
+(require 'init-yasnippet)
 
 ;; programming languages
+(require 'init-cmake)
 (require 'init-cc-mode)
 (require 'init-python)
 (require 'init-rust)
+(require 'init-javascript)
+(require 'init-yaml)
+(require 'init-hex)
+(require 'init-pdf)
 
-(require-package 'yaml-mode)
-
-
-;; Start server otherwise magit commit would fail
-(add-hook 'after-init-hook 'zap/server-start)
+;; Start server
+(add-hook 'after-init-hook
+          (lambda ()
+            (require 'server)
+            (unless (server-running-p)
+              (server-start))))
 
 ;; Re-direct custom configuration file
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))

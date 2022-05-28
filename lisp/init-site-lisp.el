@@ -2,16 +2,17 @@
 ;;; Commentary:
 ;;; Code:
 
-(require 'cl-lib)
-(let ((site-lisp-dir (expand-file-name "site-lisp/" user-emacs-directory)))
-  (let* ((default-directory site-lisp-dir))
-    (progn
-      (setq load-path
-	    (append
-	     (cl-remove-if-not
-	      (lambda (dir) (file-directory-p dir))
-	      (directory-files (expand-file-name site-lisp-dir) t "^[^\\.]"))
-	     load-path)))))
+(defun load-site-lisp (dir)
+  (require 'autoload)
+  (let ((generated-autoload-file (expand-file-name "site-lisp-autoload.el" dir)))
+    (dolist (dir (directory-files dir t "^[^.]"))
+      (when (file-directory-p dir)
+        (byte-recompile-directory dir 0)
+        (update-directory-autoloads dir)))
+    (add-to-list 'load-path dir)
+    (load generated-autoload-file t t)))
+
+(load-site-lisp (expand-file-name "site-lisp/" user-emacs-directory))
 
 (provide 'init-site-lisp)
 ;;; init-site-lisp.el ends here

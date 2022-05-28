@@ -2,43 +2,40 @@
 ;;; Commentary:
 ;;; Code:
 
+(require 'cl-lib)
 (require 'package)
 
-;; Disable checking package signature to workround gnu elpa issue
-(setq package-check-signature nil)
-
 ;;; Install into separate package dirs for each Emacs version, to prevent bytecode incompatibility
-(let ((versioned-package-dir
-       (expand-file-name (format "elpa-%s.%s" emacs-major-version emacs-minor-version)
-                         user-emacs-directory)))
-  (setq package-user-dir versioned-package-dir))
+(setq package-user-dir
+      (expand-file-name (format "elpa-%s.%s" emacs-major-version emacs-minor-version)
+                        user-emacs-directory))
+(setq package-gnupghome-dir (expand-file-name "gnupg" package-user-dir))
 
-;;; Install packages if necessary
+;;; Standard package repositories
+(add-to-list 'package-archives '( "melpa" . "https://melpa.org/packages/") t)
+
 (defun require-package (package &optional min-version no-refresh)
   "Install given PACKAGE, optionally requiring MIN-VERSION.
 If NO-REFRESH is non-nil, the available package lists will not be
 re-downloaded in order to locate PACKAGE."
+  (when (stringp min-version)
+    (setq min-version (version-to-list min-version)))
   (or (package-installed-p package min-version)
       (let* ((known (cdr (assoc package package-archive-contents)))
-             (versions (mapcar #'package-desc-version known)))
-        (if (cl-find-if (lambda (v) (version-list-<= min-version v)) versions)
-            (package-install package)
+             (best (car (sort known (lambda (a b)
+                                      (version-list-<= (package-desc-version b)
+                                                       (package-desc-version a)))))))
+        (if (and best (version-list-<= min-version (package-desc-version best)))
+            (package-install best)
           (if no-refresh
               (error "No version of %s >= %S is available" package min-version)
             (package-refresh-contents)
-            (require-package package min-version t))))))
-
-
-;;; Standard package repositories
-(setq package-archives
-      '(("gnu"          . "https://elpa.gnu.org/packages/")
-	("melpa"        . "https://melpa.org/packages/")))
+            (require-package package min-version t)))
+        (package-installed-p package min-version))))
 
 (setq package-enable-at-startup nil)
-
 (package-initialize)
 
-(require 'cl-lib)
 (require-package 'fullframe)
 (fullframe list-packages quit-window)
 
