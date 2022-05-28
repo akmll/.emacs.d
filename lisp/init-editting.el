@@ -24,14 +24,18 @@
 (setq-default truncate-lines t)
 (setq-default kill-whole-line t)
 (setq-default truncate-partial-width-windows nil)
+(setq-default help-window-select t)
+
+(require 'hl-line)
+(global-hl-line-mode 1)
 
 (add-hook 'after-init-hook 'global-auto-revert-mode)
-(after-load 'autorevert
+(with-eval-after-load 'autorevert
   (diminish 'auto-revert-mode))
 
 (add-hook 'after-init-hook 'transient-mark-mode)
 
-(after-load 'subword
+(with-eval-after-load 'subword
   (diminish 'subword-mode))
 
 (setq-default display-line-numbers-width 3)
@@ -45,7 +49,7 @@
 
 (require-package 'symbol-overlay)
 (add-hook 'prog-mode-hook 'symbol-overlay-mode)
-(after-load 'symbol-overlay
+(with-eval-after-load 'symbol-overlay
   (diminish 'symbol-overlay-mode)
   (define-key symbol-overlay-mode-map (kbd "M-i") 'symbol-overlay-put)
   (define-key symbol-overlay-mode-map (kbd "M-n") 'symbol-overlay-next)
@@ -57,17 +61,12 @@
 (require-package 'avy)
 (global-set-key (kbd "C-;") 'avy-goto-char-timer)
 
-(require-package 'whole-line-or-region)
-(add-hook 'after-init-hook 'whole-line-or-region-global-mode)
-(after-load 'whole-line-or-region
-  (diminish 'whole-line-or-region-local-mode))
-
 (require-package 'highlight-escape-sequences)
 (add-hook 'after-init-hook 'hes-mode)
 
 (require-package 'which-key)
 (add-hook 'after-init-hook 'which-key-mode)
-(after-load 'which-key
+(with-eval-after-load 'which-key
   (diminish 'which-key-mode))
 
 (add-hook 'after-init-hook 'show-paren-mode)
@@ -80,7 +79,7 @@
 
 (require-package 'whitespace-cleanup-mode)
 (add-hook 'after-init-hook 'global-whitespace-cleanup-mode)
-(after-load 'whitespace-cleanup-mode
+(with-eval-after-load 'whitespace-cleanup-mode
   (diminish 'whitespace-cleanup-mode))
 
 ;; textile mode

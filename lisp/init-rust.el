@@ -2,16 +2,16 @@
 ;;; Commentary:
 ;;; Code:
 
-(require-package 'rust-mode)
-(require-package 'racer)
-(add-hook 'rust-mode-hook #'racer-mode)
+(require-package 'lsp-mode)
+(require-package 'dap-mode)
 
-(require-package 'company)
-(add-hook 'racer-mode-hook #'company-mode)
+(require 'dap-codelldb)
 
-(require-package 'flycheck-rust)
-(after-load 'rust-mode
-  (add-hook 'flycheck-mode-hook #'flycheck-rust-setup))
+(require-package 'rustic)
+
+(add-hook 'conf-toml-mode-hook
+          (lambda ()
+            (lsp-deferred)))
 
 (provide 'init-rust)
 ;;; init-rust.el ends here

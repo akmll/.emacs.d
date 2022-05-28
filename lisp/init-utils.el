@@ -3,19 +3,19 @@
 ;;; Commentary:
 ;;; Code:
 
-(if (fboundp 'with-eval-after-load)
-    (defalias 'after-load 'with-eval-after-load)
-  (defmacro after-load (feature &rest body)
-    "After FEATURE is loaded, evaluate BODY."
-    (declare (indent defun))
-    `(eval-after-load ,feature
-       '(progn ,@body))))
+(defun insert-current-date ()
+  (interactive)
+  (insert (format-time-string "%Y/%m/%d")))
 
+(defun insert-current-time ()
+  (interactive)
+  (insert (format-time-string "%H:%M:%S")))
 
-(defun zap/server-start ()
-  (require 'server)
-  (unless (server-running-p)
-    (server-start)))
+(defun bat-async-run ()
+  "Run a batch file asynchronously"
+  (interactive)
+  (save-buffer)
+  (async-shell-command buffer-file-name))
 
 (provide 'init-utils)
 

@@ -5,6 +5,15 @@
 
 ;;; Code:
 
+(require 'compile)
+;; Add compilation error regex for IAR Embedded Workbench
+(with-eval-after-load 'compile
+  (let ((defn '(iarbuild
+                "\\(^.+\\.\\(?:cpp\\|c\\|hpp\\|h\\)\\)(\\([0-9]+\\))\\s-+:\\s-+\\(?:\\(Error\\)\\|\\(Warning\\)\\|\\(Info\\)\\).*"
+                1 2 (3 . 4))))
+    (add-to-list 'compilation-error-regexp-alist-alist defn)
+    (add-to-list 'compilation-error-regexp-alist (car defn))))
+
 ;; Initialize CC-mode style
 (c-add-style "zap"
              '("bsd"
@@ -15,33 +24,28 @@
                 )
                (c-basic-offset . 4)
                (c-tab-always-indent . nil)
+               (c-doc-comment-style . doxygen)
+               (c-indent-comment-alist
+                (empty-line align comment)
+                )
                ))
 
-(require-package 'ggtags)
-(setq ggtags-enable-navigation-keys nil)
+(require 'dap-cpptools)
 
-(require-package 'smart-tabs-mode)
+(setq-default c-mark-wrong-style-of-comment t)
+(setq-default c-default-style "zap")
 
 (defun zap/c-mode-hook ()
-  (local-set-key (kbd "M-f") 'c-forward-into-nomenclature)
-  (local-set-key (kbd "M-b") 'c-backward-into-nomenclature)
-
   (setq tab-width 4)
-  (setq c-basic-offset 4)
-  ;; (setq indent-tabs-mode nil)
   (setq comment-column 40)
 
-  (setq c-tab-always-indent nil)
-
-  (c-set-style "zap")
-  (smart-tabs-insinuate 'c 'c++ 'java 'javascript 'python 'ruby 'nxml)
-  (when (derived-mode-p 'c-mode 'c++-mode 'java-mode 'asm-mode)
-    (ggtags-mode 1))
+  (yas-minor-mode)
+  (lsp-deferred)
   )
 
 (add-hook 'c-mode-common-hook 'zap/c-mode-hook)
 
-(require-package 'cmake-mode)
+(global-set-key (kbd "C-c d o") 'lsp-clangd-find-other-file)
 
 (provide 'init-cc-mode)
 

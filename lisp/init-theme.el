@@ -4,7 +4,7 @@
 
 (require-package 'zenburn-theme)
 (require-package 'solarized-theme)
-(load-theme 'zenburn)
+(require-package 'afternoon-theme)
 
 (provide 'init-theme)
 ;; init-theme.el ends here
