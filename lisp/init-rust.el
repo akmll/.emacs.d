@@ -5,6 +5,10 @@
 (require-package 'lsp-mode)
 (require-package 'dap-mode)
 
+(require 'lsp-rust)
+(with-eval-after-load 'lsp-mode
+  (setq lsp-rust-server 'rust-analyzer))
+
 (require 'dap-codelldb)
 
 (require-package 'rustic)

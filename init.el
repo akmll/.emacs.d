@@ -21,6 +21,7 @@
 (require 'init-misc)
 (require 'init-sessions)
 (require 'init-ivy)
+(require 'init-flycheck)
 (require 'init-lsp)
 (require 'init-dap)
 (require 'init-editting)
@@ -29,6 +30,7 @@
 (require 'init-org)
 (require 'init-projectile)
 (require 'init-yasnippet)
+(require 'init-pdf)
 
 ;; programming languages
 (require 'init-cmake)
@@ -38,7 +40,8 @@
 (require 'init-javascript)
 (require 'init-yaml)
 (require 'init-hex)
-(require 'init-pdf)
+(require 'init-csharp)
+(require 'init-batch)
 
 ;; Start server
 (add-hook 'after-init-hook

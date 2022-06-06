@@ -10,7 +10,8 @@
 (setq-default projectile-indexing-method 'alien)
 
 (with-eval-after-load 'projectile
-  (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map))
+  (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
+  (setq projectile-enable-caching t))
 
 (require-package 'ibuffer-projectile)
 

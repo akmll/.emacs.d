@@ -9,6 +9,7 @@
 (with-eval-after-load 'cmake-mode
   (cmake-font-lock-activate))
 
+(require-package 'lsp-mode)
 (require 'lsp-cmake)
 
 (add-hook 'cmake-mode-hook 'lsp-deferred)
