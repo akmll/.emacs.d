@@ -11,12 +11,6 @@
   (interactive)
   (insert (format-time-string "%H:%M:%S")))
 
-(defun bat-async-run ()
-  "Run a batch file asynchronously"
-  (interactive)
-  (save-buffer)
-  (async-shell-command buffer-file-name))
-
 (provide 'init-utils)
 
 ;;; init-utils.el ends here

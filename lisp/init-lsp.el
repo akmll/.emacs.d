@@ -10,13 +10,13 @@
 (setq lsp-ui-sideline-show-diagnostics t)
 (setq lsp-ui-sideline-show-hover nil)
 (setq lsp-ui-sideline-show-symbol t)
+(setq lsp-ui-doc-position 'bottom)
 
 (with-eval-after-load 'lsp-mode
   (diminish 'lsp-lens-mode))
 
 (require-package 'lsp-treemacs)
-(with-eval-after-load 'lsp-mode
-  (lsp-treemacs-sync-mode))
+(lsp-treemacs-sync-mode 1)
 
 (require-package 'lsp-ivy)
 

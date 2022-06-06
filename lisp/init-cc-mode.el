@@ -30,6 +30,10 @@
                 )
                ))
 
+(require-package 'lsp-mode)
+(require-package 'dap-mode)
+
+(require 'lsp-clangd)
 (require 'dap-cpptools)
 
 (setq-default c-mark-wrong-style-of-comment t)
@@ -45,7 +49,7 @@
 
 (add-hook 'c-mode-common-hook 'zap/c-mode-hook)
 
-(global-set-key (kbd "C-c d o") 'lsp-clangd-find-other-file)
+(global-set-key (kbd "C-c l g o") 'lsp-clangd-find-other-file)
 
 (provide 'init-cc-mode)
 

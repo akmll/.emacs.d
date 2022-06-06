@@ -9,20 +9,11 @@
 
 (require-package 'pip-requirements)
 
-(require-package 'anaconda-mode)
-(with-eval-after-load 'python
-  (add-hook 'python-mode-hook 'anaconda-mode)
-  (add-hook 'python-mode-hook 'anaconda-eldoc-mode))
-(with-eval-after-load 'anaconda-mode
-  (define-key anaconda-mode-map (kbd "M-?") nil))
-
-(require-package 'company-anaconda)
-(with-eval-after-load 'company
-  (with-eval-after-load 'python
-    (push 'company-anaconda company-backends)))
-
+(require-package 'lsp-mode)
 (require-package 'lsp-pyright)
-(add-hook 'python-mode-hook 'lsp-defferred)
+(add-hook 'python-mode-hook 'lsp-deferred)
+
+(require 'dap-python)
 
 (provide 'init-python)
 ;; init-python.el ends here
