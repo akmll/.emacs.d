@@ -50,6 +50,7 @@
 (add-hook 'c-mode-common-hook 'zap/c-mode-hook)
 
 (global-set-key (kbd "C-c l g o") 'lsp-clangd-find-other-file)
+(global-set-key (kbd "<mouse-4>") 'xref-pop-marker-stack)
 
 (provide 'init-cc-mode)
 
