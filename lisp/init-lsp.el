@@ -4,6 +4,7 @@
 
 (require-package 'lsp-mode)
 (setq lsp-enable-snippet nil)
+(setq lsp-keep-workspace-alive nil)
 
 (require-package 'lsp-ui)
 (setq lsp-ui-sideline-show-code-actions t)

@@ -136,6 +136,12 @@
                               (if (> (point) (point-min))
                                   (indent-according-to-mode))))
 
+;; Toggle comment in current line
+(global-set-key (kbd "C-M-;") (lambda ()
+                                (interactive)
+                                (comment-or-uncomment-region
+                                 (line-beginning-position) (line-end-position))))
+
 (setq confirm-kill-emacs 'yes-or-no-p)
 
 ;; Replace yes-or-no to y-or-n
