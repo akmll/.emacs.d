@@ -3,15 +3,13 @@
 ;;; Code:
 
 ;; git
-(require-package 'git-blamed)
 (require-package 'git-modes)
 (require-package 'git-timemachine)
 (global-set-key (kbd "C-x v t") 'git-timemachine-toggle)
 
 (require-package 'magit)
 (setq-default magit-diff-refine-hunk t)
-(global-set-key (kbd "C-x g") 'magit-status)
-(global-set-key (kbd "C-x M-g") 'magit-dispatch)
+(setq-default magit-refresh-status-buffer nil)
 
 (require-package 'magit-todos)
 (require-package 'fullframe)
