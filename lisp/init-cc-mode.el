@@ -34,6 +34,11 @@
 (require-package 'dap-mode)
 
 (require 'lsp-clangd)
+(setq lsp-clients-clangd-args
+      '("--header-insertion=never"
+        "--header-insertion-decorators=0"
+        ))
+
 (require 'dap-cpptools)
 
 (setq-default c-mark-wrong-style-of-comment t)
