@@ -12,7 +12,7 @@
 (setq package-gnupghome-dir (expand-file-name "gnupg" package-user-dir))
 
 ;;; Standard package repositories
-(add-to-list 'package-archives '( "melpa" . "https://melpa.org/packages/") t)
+(add-to-list 'package-archives '( "melpa-cn" . "https://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/") t)
 
 (defun require-package (package &optional min-version no-refresh)
   "Install given PACKAGE, optionally requiring MIN-VERSION.
