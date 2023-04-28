@@ -6,7 +6,7 @@
 (require-package 'solarized-theme)
 (require-package 'afternoon-theme)
 
-(load-theme 'solarized-gruvbox-light t)
+(load-theme 'solarized-zenburn t)
 
 (provide 'init-theme)
 ;; init-theme.el ends here
