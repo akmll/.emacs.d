@@ -37,6 +37,7 @@
 (setq lsp-clients-clangd-args
       '("--header-insertion=never"
         "--header-insertion-decorators=0"
+        "--query-driver=**/arm-none-eabi-*"
         ))
 
 (require 'dap-cpptools)
