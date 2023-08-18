@@ -3,15 +3,16 @@
 ;;; Commentary:
 ;;
 
-(require-package 'csharp-mode)
+(use-package csharp-mode
+  :ensure t
+  :hook (csharp-mode . eglot-ensure)
+  )
 
-(require-package 'lsp-mode)
-(require 'lsp-csharp)
-
-(require-package 'dap-mode)
-(require 'dap-netcore)
-
-(add-hook 'csharp-mode-hook 'lsp-deferred)
+;; (setq-default omnisharp-roslyn-path (concat user-emacs-directory ".cache/lsp/omnisharp-roslyn/latest/omnisharp.exe"))
+;; (with-eval-after-load 'eglot
+;;   (add-to-list 'eglot-server-programs
+;;                `((csharp-mode csharp-ts-mode) . (,(expand-file-name omnisharp-roslyn-path) "--lsp"))
+;;                ))
 
 (provide 'init-csharp)
 

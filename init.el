@@ -22,6 +22,7 @@
 (require 'init-sessions)
 (require 'init-ivy)
 (require 'init-flycheck)
+(require 'init-eglot)
 (require 'init-lsp)
 (require 'init-dap)
 (require 'init-editting)

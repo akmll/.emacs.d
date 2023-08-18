@@ -30,17 +30,12 @@
                 )
                ))
 
-(require-package 'lsp-mode)
-(require-package 'dap-mode)
-
-(require 'lsp-clangd)
-(setq lsp-clients-clangd-args
-      '("--header-insertion=never"
-        "--header-insertion-decorators=0"
-        "--query-driver=**/arm-none-eabi-*"
-        ))
-
-(require 'dap-cpptools)
+(with-eval-after-load 'eglot
+  (add-to-list 'eglot-server-programs
+               `((c-mode c++-mode) . ("clangd"
+                                      "--header-insertion=never"
+                                      "--header-insertion-decorators=0"
+                                      "--query-driver=**/arm-none-eabi-*"))))
 
 (setq-default c-mark-wrong-style-of-comment t)
 (setq-default c-default-style "zap")
@@ -50,12 +45,24 @@
   (setq comment-column 40)
 
   (yas-minor-mode)
-  (lsp-deferred)
+  (eglot-ensure)
   )
 
 (add-hook 'c-mode-common-hook 'zap/c-mode-hook)
 
-(global-set-key (kbd "C-c l g o") 'lsp-clangd-find-other-file)
+(defun eglot-clangd-find-other-file (&optional new-window)
+  (interactive "P")
+  (let
+      ((other-file (jsonrpc-request
+                    (eglot--current-server-or-lose)
+                    :textDocument/switchSourceHeader
+                    (eglot--TextDocumentIdentifier))))
+    (unless (s-present? other-file)
+      (user-error "Could not find other file"))
+    (funcall (if new-window #'find-file-other-window #'find-file)
+             (eglot--uri-to-path other-file))))
+
+(global-set-key (kbd "C-c l g o") 'eglot-clangd-find-other-file)
 (global-set-key (kbd "<mouse-4>") 'xref-pop-marker-stack)
 
 (provide 'init-cc-mode)

@@ -14,6 +14,9 @@
 ;;; Standard package repositories
 (add-to-list 'package-archives '( "melpa-cn" . "https://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/") t)
 
+(eval-when-compile
+  (require 'use-package))
+
 (defun require-package (package &optional min-version no-refresh)
   "Install given PACKAGE, optionally requiring MIN-VERSION.
 If NO-REFRESH is non-nil, the available package lists will not be
