@@ -9,10 +9,9 @@
 (with-eval-after-load 'cmake-mode
   (cmake-font-lock-activate))
 
-(require-package 'lsp-mode)
-(require 'lsp-cmake)
+(require 'eglot)
 
-(add-hook 'cmake-mode-hook 'lsp-deferred)
+(add-hook 'cmake-mode-hook 'eglot-ensure)
 
 (provide 'init-cmake)
 

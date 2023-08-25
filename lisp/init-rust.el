@@ -2,20 +2,13 @@
 ;;; Commentary:
 ;;; Code:
 
-(require-package 'lsp-mode)
-(require-package 'dap-mode)
-
-(require 'lsp-rust)
-(with-eval-after-load 'lsp-mode
-  (setq lsp-rust-server 'rust-analyzer))
-
-(require 'dap-codelldb)
+(require 'eglot)
 
 (require-package 'rustic)
 
 (add-hook 'conf-toml-mode-hook
           (lambda ()
-            (lsp-deferred)))
+            (eglot-ensure)))
 
 (provide 'init-rust)
 ;;; init-rust.el ends here
