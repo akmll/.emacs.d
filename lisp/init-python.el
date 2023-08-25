@@ -9,11 +9,8 @@
 
 (require-package 'pip-requirements)
 
-(require-package 'lsp-mode)
-(require-package 'lsp-pyright)
-(add-hook 'python-mode-hook 'lsp-deferred)
-
-(require 'dap-python)
+(require 'eglot)
+(add-hook 'python-mode-hook 'eglot-ensure)
 
 (provide 'init-python)
 ;; init-python.el ends here
