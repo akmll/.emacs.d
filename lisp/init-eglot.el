@@ -7,7 +7,8 @@
   :ensure t
 
   :bind
-  (("C-c r" . eglot-rename))
+  (("C-c r" . eglot-rename)
+   ("C-c d" . eglot-find-declaration))
 
   :hook
   (eglot-managed-mode . (lambda () (eglot-inlay-hints-mode -1)))

@@ -57,12 +57,12 @@
                     (eglot--current-server-or-lose)
                     :textDocument/switchSourceHeader
                     (eglot--TextDocumentIdentifier))))
-    (unless (s-present? other-file)
+    (unless (not (or (null other-file) (string= "" other-file)))
       (user-error "Could not find other file"))
     (funcall (if new-window #'find-file-other-window #'find-file)
              (eglot--uri-to-path other-file))))
 
-(global-set-key (kbd "C-c l g o") 'eglot-clangd-find-other-file)
+(global-set-key (kbd "C-c o") 'eglot-clangd-find-other-file)
 (global-set-key (kbd "<mouse-4>") 'xref-pop-marker-stack)
 
 (provide 'init-cc-mode)
