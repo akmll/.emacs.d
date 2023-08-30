@@ -9,7 +9,9 @@
   :bind
   (("C-c r" . eglot-rename)
    ("C-c d" . eglot-find-declaration)
-   ("C-c h" . eldoc))
+   ("C-c h" . eldoc)
+   ("M-N" . flymake-goto-next-error)
+   ("M-P" . flymake-goto-prev-error))
 
   :hook
   (eglot-managed-mode . (lambda () (eglot-inlay-hints-mode -1)))
