@@ -6,6 +6,9 @@
 
 (require-package 'rustic)
 
+(with-eval-after-load 'rustic
+  (setq rustic-lsp-client 'eglot))
+
 (add-hook 'conf-toml-mode-hook
           (lambda ()
             (eglot-ensure)))
