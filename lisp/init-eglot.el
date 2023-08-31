@@ -21,8 +21,6 @@
   (eglot-confirm-server-initiated-edits nil)
   )
 
-(setq-default eldoc-echo-area-use-multiline-p '2)
-
 (provide 'init-eglot)
 
 ;;; init-eglot.el ends here

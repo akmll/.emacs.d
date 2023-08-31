@@ -21,7 +21,6 @@
 (require 'init-misc)
 (require 'init-sessions)
 (require 'init-ivy)
-(require 'init-flycheck)
 (require 'init-eglot)
 (require 'init-editting)
 (require 'init-vc)
