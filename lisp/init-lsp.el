@@ -14,7 +14,8 @@
 (setq lsp-ui-doc-position 'bottom)
 
 (with-eval-after-load 'lsp-mode
-  (diminish 'lsp-lens-mode))
+  (diminish 'lsp-lens-mode)
+  (lsp-headerline-breadcrumb-mode -1))
 
 (require-package 'lsp-treemacs)
 (lsp-treemacs-sync-mode 1)
