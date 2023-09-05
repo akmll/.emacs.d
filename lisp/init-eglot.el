@@ -19,6 +19,7 @@
   :custom
   (eglot-autoshutdown t)
   (eglot-confirm-server-initiated-edits nil)
+  (eglot-report-progress nil)
   )
 
 (provide 'init-eglot)

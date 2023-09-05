@@ -43,6 +43,7 @@
 (defun zap/c-mode-hook ()
   (setq tab-width 4)
   (setq comment-column 40)
+  (setq flymake-diagnostic-functions nil)
 
   (yas-minor-mode)
   (eglot-ensure)
