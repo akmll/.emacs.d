@@ -6,10 +6,16 @@
 (require-package 'json-mode)
 (require-package 'js2-mode)
 (require-package 'typescript-mode)
+
 (require 'eglot)
 
-(add-hook 'js-mode-hook 'eglot-ensure)
-(add-hook 'typescript-mode-hook 'eglot-ensure)
+(defun zap/javascript-mode-hook ()
+  (setq comment-column 40)
+  (eglot-ensure))
+
+(add-hook 'js-mode-hook 'zap/javascript-mode-hook)
+
+(add-hook 'typescript-mode-hook 'zap/javascript-mode-hook)
 
 (provide 'init-javascript)
 
