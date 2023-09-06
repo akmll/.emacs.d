@@ -5,9 +5,11 @@
 
 (require-package 'flycheck)
 (with-eval-after-load 'flycheck
-  (diminish 'flycheck-mode))
+  (diminish 'flycheck-mode)
 
-(setq flycheck-checker-error-threshold nil)
+  (setq flycheck-checker-error-threshold nil)
+  (global-set-key (kbd "M-N") 'flycheck-next-error)
+  (global-set-key (kbd "M-P") 'flycheck-previous-error))
 
 (provide 'init-flycheck)
 

@@ -11,7 +11,10 @@
 (require-package 'dap-mode)
 (require 'dap-netcore)
 
-(add-hook 'csharp-mode-hook 'lsp-deferred)
+(defun zap/csharp-mode-hook ()
+  (lsp-deferred))
+
+(add-hook 'csharp-mode-hook 'zap/csharp-mode-hook)
 
 (provide 'init-csharp)
 
