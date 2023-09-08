@@ -7,8 +7,14 @@
 (require-package 'js2-mode)
 (require-package 'typescript-mode)
 
-(add-hook 'js-mode-hook 'lsp-deferred)
-(add-hook 'typescript-mode-hook 'lsp-deferred)
+(defun zap/javascript-mode-hook ()
+  (setq comment-column 40)
+  (setq fill-column 80)
+
+  (lsp-deferred))
+
+(add-hook 'js-mode-hook 'zap/javascript-mode-hook)
+(add-hook 'typescript-mode-hook 'zap/javascript-mode-hook)
 
 (provide 'init-javascript)
 
