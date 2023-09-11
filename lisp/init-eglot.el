@@ -22,6 +22,8 @@
   (eglot-report-progress nil)
   )
 
+(setq-default completions-sort nil)
+
 (provide 'init-eglot)
 
 ;;; init-eglot.el ends here
