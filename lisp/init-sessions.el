@@ -25,6 +25,8 @@
 (add-to-list 'desktop-modes-not-to-save 'Info-mode)
 (add-to-list 'desktop-modes-not-to-save 'info-lookup-mode)
 (add-to-list 'desktop-modes-not-to-save 'fundamental-mode)
+(add-to-list 'desktop-modes-not-to-save 'lsp-mode)
+(add-to-list 'desktop-modes-not-to-save 'eglot-mode)
 
 (provide 'init-sessions)
 ;; init-sessions.el ends here
