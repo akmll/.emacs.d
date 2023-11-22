@@ -17,6 +17,7 @@
   (eglot-managed-mode . (lambda () (eglot-inlay-hints-mode -1)))
 
   :custom
+  (eglot-events-buffer-size 0)
   (eglot-autoshutdown t)
   (eglot-confirm-server-initiated-edits nil)
   (eglot-report-progress nil)
