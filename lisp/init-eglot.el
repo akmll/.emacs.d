@@ -3,6 +3,10 @@
 ;;; Commentary:
 ;;
 
+(use-package breadcrumb
+  :ensure t
+  )
+
 (use-package eglot
   :ensure t
 
@@ -14,7 +18,10 @@
    ("M-P" . flymake-goto-prev-error))
 
   :hook
-  (eglot-managed-mode . (lambda () (eglot-inlay-hints-mode -1)))
+  (eglot-managed-mode . (lambda ()
+                          (eglot-inlay-hints-mode -1)
+                          (add-to-list 'header-line-format '(:eval (breadcrumb-imenu-crumbs)))
+                          ))
 
   :custom
   (eglot-events-buffer-size 0)
