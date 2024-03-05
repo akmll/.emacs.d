@@ -35,6 +35,7 @@
                `((c-mode c++-mode) . ("clangd"
                                       "--header-insertion=never"
                                       "--header-insertion-decorators=0"
+                                      "--rename-file-limit=0"
                                       "--query-driver=**/arm-none-eabi-*"))))
 
 (setq-default c-mark-wrong-style-of-comment t)
