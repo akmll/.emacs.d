@@ -5,7 +5,6 @@
 
 (require-package 'json-mode)
 (require-package 'js2-mode)
-(require-package 'typescript-mode)
 
 (require 'eglot)
 
@@ -13,9 +12,21 @@
   (setq comment-column 40)
   (eglot-ensure))
 
-(add-hook 'js-mode-hook 'zap/javascript-mode-hook)
+(require 'treesit)
+(unless (treesit-ready-p 'typescript)
+  (treesit-install-language-grammar ("https://github.com/tree-sitter/tree-sitter-typescript" "master" "typescript/src")))
 
-(add-hook 'typescript-mode-hook 'zap/javascript-mode-hook)
+(unless (treesit-ready-p 'tsx)
+  (treesit-install-language-grammar ("https://github.com/tree-sitter/tree-sitter-typescript" "master" "tsx/src")))
+
+(setq typescript-ts-mode-indent-offset 4);
+
+(add-to-list 'auto-mode-alist '("\\.ts\\'" . typescript-ts-mode))
+(add-to-list 'auto-mode-alist '("\\.tsx\\'" . tsx-ts-mode))
+
+(add-hook 'js-mode-hook 'zap/javascript-mode-hook)
+(add-hook 'js2-mode-hook 'zap/javascript-mode-hook)
+(add-hook 'tsx-ts-mode-hook 'zap/javascript-mode-hook)
 
 (provide 'init-javascript)
 
