@@ -29,6 +29,7 @@
 (require 'init-projectile)
 (require 'init-yasnippet)
 (require 'init-pdf)
+(require 'init-treesit)
 
 ;; programming languages
 (require 'init-cmake)
