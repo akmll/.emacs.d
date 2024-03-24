@@ -12,13 +12,6 @@
   (setq comment-column 40)
   (eglot-ensure))
 
-(require 'treesit)
-(unless (treesit-ready-p 'typescript)
-  (treesit-install-language-grammar ("https://github.com/tree-sitter/tree-sitter-typescript" "master" "typescript/src")))
-
-(unless (treesit-ready-p 'tsx)
-  (treesit-install-language-grammar ("https://github.com/tree-sitter/tree-sitter-typescript" "master" "tsx/src")))
-
 (setq typescript-ts-mode-indent-offset 4);
 
 (add-to-list 'auto-mode-alist '("\\.ts\\'" . typescript-ts-mode))
