@@ -3,7 +3,6 @@
 ;;; Commentary:
 ;;; Code:
 
-(require-package 'json-mode)
 (require-package 'js2-mode)
 
 (require 'eglot)
@@ -12,7 +11,9 @@
   (setq comment-column 40)
   (eglot-ensure))
 
-(setq typescript-ts-mode-indent-offset 4);
+(setq typescript-ts-mode-indent-offset 4)
+(setq js-ts-mode-indent-offset 4)
+(setq json-ts-mode-indent-offset 4)
 
 (add-to-list 'auto-mode-alist '("\\.ts\\'" . typescript-ts-mode))
 (add-to-list 'auto-mode-alist '("\\.tsx\\'" . tsx-ts-mode))

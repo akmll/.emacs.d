@@ -6,9 +6,18 @@
 (require 'treesit)
 
 (use-package treesit-auto
+  :ensure t
   :custom
   (treesit-auto-install 'prompt)
   :config
+  (setq treesit-auto-langs '(python
+                             typescript
+                             tsx
+                             javascript
+                             css
+                             yaml
+                             json))
+  (treesit-auto-add-to-auto-mode-alist nil)
   (global-treesit-auto-mode))
 
 (defvar genehack/tsx-treesit-auto-recipe
