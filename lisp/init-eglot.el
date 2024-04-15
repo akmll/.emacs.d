@@ -26,8 +26,9 @@
   :custom
   (eglot-events-buffer-size 0)
   (eglot-autoshutdown t)
-  (eglot-confirm-server-initiated-edits nil)
+  (eglot-confirm-server-initiated-edits t)
   (eglot-report-progress nil)
+  (eglot-ignored-server-capabilities '(:documentOnTypeFormattingProvider))
   )
 
 (setq-default completions-sort nil)
