@@ -52,6 +52,29 @@
 
 (add-hook 'c-mode-common-hook 'zap/c-mode-hook)
 
+(require 'c-ts-mode)
+(add-to-list 'major-mode-remap-alist '(c-mode . c-ts-mode))
+(add-to-list 'major-mode-remap-alist '(c++-mode . c++-ts-mode))
+(add-to-list 'major-mode-remap-alist '(c-or-c++-mode . c-or-c++-ts-mode))
+
+(defun zap/c-ts-indent-style ()
+  `(
+    ,@(alist-get 'bsd (c-ts-mode--indent-styles 'cpp))))
+
+(defun zap/c-ts-mode-hook ()
+  (setq tab-width 4)
+  (setq comment-column 40)
+  (setq flymake-diagnostic-functions nill)
+  (setq c-doc-comment-style 'doxygen)
+  (setq c-ts-mode-indent-offset 4)
+  (setq c-ts-mode-toggle-comment-style 1)
+  (setq c-ts-mode-indent-style #'zap/c-ts-indent-style)
+
+  (yas-minor-mode)
+  (eglot-ensure)
+  )
+(add-hook 'c-ts-base-mode-hook 'zap/c-ts-mode-hook)
+
 (defun eglot-clangd-find-other-file (&optional new-window)
   (interactive "P")
   (let
