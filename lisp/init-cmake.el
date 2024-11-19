@@ -3,15 +3,13 @@
 ;;; Commentary:
 ;;
 
-(require-package 'cmake-mode)
-(require-package 'cmake-font-lock)
-
-(with-eval-after-load 'cmake-mode
-  (cmake-font-lock-activate))
-
-(require 'eglot)
-
-(add-hook 'cmake-mode-hook 'eglot-ensure)
+(use-package cmake-ts-mode
+  :ensure
+  :config
+  (add-hook 'cmake-ts-mode-hook
+            (defun setup-noecmakelsp ()
+              (require 'eglot)
+              (eglot-ensure))))
 
 (provide 'init-cmake)
 
