@@ -7,8 +7,9 @@
   :ensure
   :config
   (add-hook 'cmake-ts-mode-hook
-            (defun setup-noecmakelsp ()
+            (defun setup-neocmakelsp ()
               (require 'eglot)
+              (add-to-list 'eglot-server-programs `((cmake-ts-mode) . ("neocmakelsp" "--stdio")))
               (eglot-ensure))))
 
 (provide 'init-cmake)
