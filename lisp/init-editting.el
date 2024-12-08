@@ -25,6 +25,7 @@
 (setq-default kill-whole-line t)
 (setq-default truncate-partial-width-windows nil)
 (setq-default help-window-select t)
+(setq-default split-height-threshold 120)
 
 (require 'hl-line)
 (global-hl-line-mode 1)
