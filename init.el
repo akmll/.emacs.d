@@ -29,7 +29,6 @@
 (require 'init-projectile)
 (require 'init-yasnippet)
 (require 'init-comint)
-(require 'init-pdf)
 (require 'init-treesit)
 
 ;; programming languages
