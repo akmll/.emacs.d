@@ -12,7 +12,7 @@
 (setq package-gnupghome-dir (expand-file-name "gnupg" package-user-dir))
 
 ;;; Standard package repositories
-(add-to-list 'package-archives '( "melpa-cn" . "https://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/") t)
+(add-to-list 'package-archives '( "melpa-cn" . "https://mirrors.ustc.edu.cn/elpa/melpa/") t)
 
 (eval-when-compile
   (require 'use-package))
