@@ -3,9 +3,10 @@
 ;;; Commentary:
 ;;
 
-(require-package 'yaml-mode)
-
-(add-hook 'yaml-mode-hook 'eglot-ensure)
+(use-package yaml-mode
+  :ensure t
+  :hook
+  (yaml-mode . eglot-ensure))
 
 (provide 'init-yaml)
 

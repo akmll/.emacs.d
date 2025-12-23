@@ -2,7 +2,8 @@
 ;;; Commentary:
 ;;; Code:
 
-(require-package 'unfill)
+(use-package unfill
+  :ensure t)
 
 (add-hook 'after-init-hook 'electric-pair-mode)
 (add-hook 'after-init-hook 'electric-indent-mode)
@@ -42,35 +43,46 @@
 (setq-default display-line-numbers-width 3)
 (add-hook 'prog-mode-hook 'display-line-numbers-mode)
 
-(require-package 'goto-line-preview)
-(global-set-key [remap goto-line] 'goto-line-preview)
+(use-package goto-line-preview
+  :ensure t
+  :config
+  (global-set-key [remap goto-line] 'goto-line-preview))
 
-(require-package 'rainbow-delimiters)
-(add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
+(use-package rainbow-delimiters
+  :ensure t
+  :hook (prog-mode . rainbow-delimiters-mode))
 
-(require-package 'symbol-overlay)
-(add-hook 'prog-mode-hook 'symbol-overlay-mode)
-(with-eval-after-load 'symbol-overlay
+(use-package symbol-overlay
+  :ensure t
+  :hook (prog-mode . symbol-overlay-mode)
+  :config
   (diminish 'symbol-overlay-mode)
   (define-key symbol-overlay-mode-map (kbd "M-i") 'symbol-overlay-put)
   (define-key symbol-overlay-mode-map (kbd "M-n") 'symbol-overlay-jump-next)
   (define-key symbol-overlay-mode-map (kbd "M-p") 'symbol-overlay-jump-prev))
 
-(require-package 'expand-region)
-(global-set-key (kbd "C-=") 'er/expand-region)
+(use-package expand-region
+  :ensure t
+  :bind
+  ("C-=" . er/expand-region))
 
-(require-package 'avy)
-(global-set-key (kbd "C-;") 'avy-goto-char-timer)
+(use-package avy
+  :ensure t
+  :bind
+  ("C-;" . avy-goto-char-timer))
 
-(require-package 'highlight-escape-sequences)
-(add-hook 'after-init-hook 'hes-mode)
+(use-package highlight-escape-sequences
+  :ensure t
+  :hook (after-init . hes-mode))
 
-(require-package 'which-key)
-(add-hook 'after-init-hook 'which-key-mode)
-(with-eval-after-load 'which-key
+(use-package which-key
+  :ensure t
+  :hook (after-init . which-key-mode)
+  :config
   (diminish 'which-key-mode))
 
-(add-hook 'after-init-hook 'show-paren-mode)
+(use-package paren
+  :hook (after-init . show-paren-mode))
 
 (setq-default show-trailing-whitespace nil)
 (defun enable-show-trailing-whitespace ()
@@ -78,20 +90,25 @@
 
 (add-hook 'prog-mode-hook 'enable-show-trailing-whitespace)
 
-(require-package 'whitespace-cleanup-mode)
-(add-hook 'after-init-hook 'global-whitespace-cleanup-mode)
-(with-eval-after-load 'whitespace-cleanup-mode
+(use-package whitespace-cleanup-mode
+  :ensure t
+  :hook (after-init . global-whitespace-cleanup-mode)
+  :config
   (diminish 'whitespace-cleanup-mode))
 
 ;; textile mode
-(require-package 'textile-mode)
+(use-package textile-mode
+  :ensure t)
 
 ;; markdown mode
-(require-package 'markdown-mode)
+(use-package markdown-mode
+  :ensure t)
 
 ;; csv file mode
-(require-package 'csv-mode)
-(setq csv-seperators '("," ";" "|" " "))
+(use-package csv-mode
+  :ensure t
+  :custom
+  (setq csv-seperators '("," ";" "|" " ")))
 
 (global-set-key [remap just-one-space] 'cycle-spacing)
 
@@ -100,14 +117,16 @@
 (global-set-key (kbd "C-.") 'set-mark-command)
 (global-set-key (kbd "C-x C-.") 'pop-global-mark)
 
-(require-package 'multiple-cursors)
-(global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
-(global-set-key (kbd "C->") 'mc/mark-next-like-this)
-(global-set-key (kbd "C-c C-<") 'mc/mark-all-line-this)
-(global-set-key (kbd "C-c m r") 'set-rectangular-region-anchor)
-(global-set-key (kbd "C-c m c") 'mc/edit-lines)
-(global-set-key (kbd "C-c m e") 'mc/edit-ends-of-lines)
-(global-set-key (kbd "C-c m a") 'mc/edit-beginning-of-lines)
+(use-package multiple-cursors
+  :ensure t
+  :bind
+  ("C-<" . mc/mark-previous-like-this)
+  ("C->" . mc/mark-next-like-this)
+  ("C-c C-<" . mc/mark-all-line-this)
+  ("C-c m r" . 'set-rectangular-region-anchor)
+  ("C-c m c" . mc/edit-lines)
+  ("C-c m e" . mc/edit-ends-of-lines)
+  ("C-c m a" . mc/edit-beginning-of-lines))
 
 (provide 'init-editting)
 ;; init-editting.el ends here

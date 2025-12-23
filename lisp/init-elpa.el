@@ -13,34 +13,23 @@
 
 ;;; Standard package repositories
 (add-to-list 'package-archives '( "melpa-cn" . "https://mirrors.ustc.edu.cn/elpa/melpa/") t)
+(setq package-archive-priorities '(("gnu" . 10)
+                                   ("nognu" . 5)
+                                   ("melpa-cn" . 0)))
 
-(eval-when-compile
-  (require 'use-package))
-
-(defun require-package (package &optional min-version no-refresh)
-  "Install given PACKAGE, optionally requiring MIN-VERSION.
-If NO-REFRESH is non-nil, the available package lists will not be
-re-downloaded in order to locate PACKAGE."
-  (when (stringp min-version)
-    (setq min-version (version-to-list min-version)))
-  (or (package-installed-p package min-version)
-      (let* ((known (cdr (assoc package package-archive-contents)))
-             (best (car (sort known (lambda (a b)
-                                      (version-list-<= (package-desc-version b)
-                                                       (package-desc-version a)))))))
-        (if (and best (version-list-<= min-version (package-desc-version best)))
-            (package-install best)
-          (if no-refresh
-              (error "No version of %s >= %S is available" package min-version)
-            (package-refresh-contents)
-            (require-package package min-version t)))
-        (package-installed-p package min-version))))
+(require 'use-package)
 
 (setq package-enable-at-startup nil)
 (package-initialize)
 
-(require-package 'fullframe)
-(fullframe list-packages quit-window)
+(use-package diminish
+  :ensure t)
+
+(use-package scratch
+  :ensure t)
+
+(use-package command-log-mode
+  :ensure t)
 
 (provide 'init-elpa)
 ;;; init-elpa.el ends here

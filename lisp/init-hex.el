@@ -3,10 +3,12 @@
 ;;; Commentary:
 ;;
 
-(require-package 'nhexl-mode)
-(setq nhexl-line-width 16)
-(setq nhexl-group-size 1)
-(setq nhexl-hex-edit-mode t)
+(use-package nhexl-mode
+  :ensure t
+  :custom
+  (nhexl-line-width 16)
+  (nhexl-group-size 1)
+  (nhexl-hex-edit-mode t))
 
 (provide 'init-hex)
 

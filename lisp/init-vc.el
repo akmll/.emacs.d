@@ -3,17 +3,23 @@
 ;;; Code:
 
 ;; git
-(require-package 'git-modes)
-(require-package 'git-timemachine)
-(global-set-key (kbd "C-x v t") 'git-timemachine-toggle)
+(use-package git-modes
+  :ensure t)
 
-(require-package 'magit)
-(setq-default magit-diff-refine-hunk t)
-(setq-default magit-refresh-status-buffer nil)
+(use-package git-timemachine
+  :ensure t
+  :bind
+  ("C-x v t" . git-timemachine-toggle))
 
-(require-package 'magit-todos)
-(require-package 'fullframe)
-(with-eval-after-load 'magit
+(use-package magit
+  :ensure t
+  :hook (magit-post-refresh . diff-hl-magit-post-refresh)
+  :custom
+  (magit-diff-refine-hunk t)
+  (magit-refresh-status-buffer nil)
+  :config
+  (use-package magit-todos
+    :ensure t)
   (fullframe magit-status magit-mode-quit-window))
 
 (autoload 'vc-git-root "vc-git")
@@ -38,13 +44,6 @@
   (let* ((default-directory (vc-git-root dir))
          (compilation-buffer-name-function (lambda (major-mode-name) "*git-svn*")))
     (compile (concat "git svn " command))))
-
-(require-package 'diff-hl)
-(setq-default diff-hl-margin-mode t)
-(add-hook 'magit-post-refresh-hook 'diff-hl-magit-post-refresh)
-(add-hook 'after-init-hook (lambda ()
-                             (global-diff-hl-mode)
-                             (diff-hl-margin-mode)))
 
 (require 'vc-svn)
 

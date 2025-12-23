@@ -23,12 +23,11 @@
   (interactive "sArgs: ")
   (bat-async-run args))
 
-(require 'bat-mode)
-(add-hook 'bat-mode-hook
-          (lambda ()
-            (define-key bat-mode-map (kbd "C-C C-c") 'bat-async-run)
-            (define-key bat-mode-map (kbd "C-C C-a") 'bat-async-run-args)
-            ))
+(use-package bat-mode
+  :bind
+  (:map bat-mode-map
+        ("C-C C-c" . bat-async-run)
+        ("C-C C-a" . bat-async-run-args)))
 
 (provide 'init-batch)
 

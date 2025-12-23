@@ -2,18 +2,18 @@
 ;;; Commentary:
 ;;; Code:
 
-(require-package 'projectile)
-
-(add-hook 'after-init-hook 'projectile-mode)
-
-(setq-default projectile-mode-line-prefix " Proj")
-(setq-default projectile-indexing-method 'alien)
-
-(with-eval-after-load 'projectile
+(use-package projectile
+  :ensure t
+  :hook
+  (after-init . projectile-mode)
+  :custom
+  (projectile-mode-line-prefix " Proj")
+  (projectile-indexing-method 'alien)
+  (projectile-enable-caching t)
+  :config
   (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
-  (setq projectile-enable-caching t))
-
-(require-package 'ibuffer-projectile)
+  (use-package ibuffer-projectile
+    :ensure t))
 
 (provide 'init-projectile)
 ;; init-projectile.el ends here

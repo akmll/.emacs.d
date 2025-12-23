@@ -3,7 +3,8 @@
 ;;; Commentary:
 ;;; Code:
 
-(require-package 'js2-mode)
+(use-package js2-mode
+  :ensure t)
 
 (require 'eglot)
 

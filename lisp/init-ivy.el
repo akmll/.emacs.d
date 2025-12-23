@@ -2,31 +2,33 @@
 ;;; Commentary:
 ;;; Code:
 
-(require-package 'diminish)
-
 ;; ivy
-(require-package 'ivy)
-(add-hook 'after-init-hook 'ivy-mode)
-(with-eval-after-load 'ivy
+(use-package ivy
+  :ensure t
+  :hook (after-init . ivy-mode)
+  :config
   (setq-default ivy-use-virtual-buffers t
 		ivy-virtual-abbreviate 'fullpath
 		ivy-magic-title nil
 		ivy-use-selectable-prompt t
 		Emable-recursive-minibuffers t)
-  (diminish 'ivy-mode))
+  (diminish 'ivy-mode)
+  (use-package ivy-xref
+    :ensure t
+    :config
+    (setq xref-show-xrefs-function 'ivy-xref-show-xrefs))
+  (use-package ivy-purpose
+    :ensure t
+    :config
+    (ivy-purpose-setup)))
 
 ;; counsel
-(require-package 'counsel)
-(setq-default counsel-mode-override-describe-bindings t)
-(with-eval-after-load 'counsel
+(use-package counsel
+  :ensure t
+  :hook (after-init . counsel-mode)
+  :config
+  (setq-default counsel-mode-override-describe-bindings t)
   (diminish 'counsel-mode))
-(add-hook 'after-init-hook 'counsel-mode)
-
-(require-package 'ivy-xref)
-(setq xref-show-xrefs-function 'ivy-xref-show-xrefs)
-
-(require-package 'ivy-purpose)
-(ivy-purpose-setup)
 
 (provide 'init-ivy)
 ;; init-ivy.el ends here

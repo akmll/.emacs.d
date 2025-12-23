@@ -22,14 +22,17 @@
   (add-to-list 'default-frame-alist no-border)
   (add-to-list 'initial-frame-alist no-border))
 
-(require-package 'disable-mouse)
+(use-package disable-mouse
+  :ensure t)
 
 (add-hook 'after-init-hook 'winner-mode)
 
-(require-package 'switch-window)
-(setq-default switch-window-shortcut-style 'alphabet)
-(setq-default switch-window-timeout nil)
-(global-set-key (kbd "C-x o") 'switch-window)
+(use-package switch-window
+  :ensure t
+  :config
+  (setq-default switch-window-shortcut-style 'alphabet)
+  (setq-default switch-window-timeout nil)
+  (global-set-key (kbd "C-x o") 'switch-window))
 
 ;; When splitting window, show (other-buffer) in the new window
 (defun split-window-func-with-other-buffer (split-function)
@@ -56,10 +59,10 @@
 (global-set-key (kbd "C-x 1") 'toggle-delete-other-windows)
 
 (unless (memq window-system '(nt w32))
-  (require-package 'windswap)
+  (use-package windswap
+    :ensure t)
   (add-hook 'after-init-hook (apply-partially 'windmove-default-keybindings 'control))
   (add-hook 'after-init-hook (apply-partially 'windswap-default-keybindings 'shift 'control)))
-
 
 (provide 'init-ui)
 ;;; init-ui.el ends here

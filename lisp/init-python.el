@@ -7,7 +7,8 @@
                 ("SConscript\\'" . python-mode))
               auto-mode-alist))
 
-(require-package 'pip-requirements)
+(use-package pip-requirements
+  :ensure t)
 
 (require 'eglot)
 (add-hook 'python-mode-hook 'eglot-ensure)

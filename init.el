@@ -13,10 +13,6 @@
 (require 'init-site-lisp)
 (require 'init-elpa)
 
-(require-package 'diminish)
-(require-package 'scratch)
-(require-package 'command-log-mode)
-
 (require 'init-ui)
 (require 'init-misc)
 (require 'init-sessions)
@@ -24,7 +20,6 @@
 (require 'init-eglot)
 (require 'init-editting)
 (require 'init-vc)
-(require 'init-realgud)
 (require 'init-org)
 (require 'init-projectile)
 (require 'init-yasnippet)
