@@ -1,4 +1,4 @@
-;;; early-init.el --- pre-initialization config
+;;; early-init.el --- pre-initialization config  -*- lexical-binding: t; -*-
 
 ;;; Commentary:
 ;;

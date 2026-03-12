@@ -1,4 +1,4 @@
-;;; init-csharp.el --- Initialize c# development environment
+;;; init-csharp.el --- Initialize c# development environment  -*- lexical-binding: t; -*-
 
 ;;; Commentary:
 ;;

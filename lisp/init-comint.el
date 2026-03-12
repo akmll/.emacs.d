@@ -1,4 +1,4 @@
-;;; init-comint.el --- Initialize compilation buffer
+;;; init-comint.el --- Initialize compilation buffer  -*- lexical-binding: t; -*-
 
 ;;; Commentary:
 ;;

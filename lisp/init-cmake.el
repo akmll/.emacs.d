@@ -1,4 +1,4 @@
-;;; init-cmake.el --- Provide cmake related functions
+;;; init-cmake.el --- Provide cmake related functions  -*- lexical-binding: t; -*-
 
 ;;; Commentary:
 ;;

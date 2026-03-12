@@ -1,4 +1,4 @@
-;;; init-misc.el
+;;; init-misc.el  -*- lexical-binding: t; -*-
 
 ;;; Commentary:
 ;;; Code:

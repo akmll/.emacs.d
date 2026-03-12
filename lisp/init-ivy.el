@@ -1,4 +1,4 @@
-;;; init-ivy.el
+;;; init-ivy.el  -*- lexical-binding: t; -*-
 ;;; Commentary:
 ;;; Code:
 

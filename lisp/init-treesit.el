@@ -1,4 +1,4 @@
-;;; init-treesit.el --- Initialize tree-sitter
+;;; init-treesit.el --- Initialize tree-sitter  -*- lexical-binding: t; -*-
 
 ;;; Commentary:
 ;;

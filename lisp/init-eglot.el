@@ -1,4 +1,4 @@
-;;; init-eglot.el --- Provide eglot mode initialization
+;;; init-eglot.el --- Provide eglot mode initialization  -*- lexical-binding: t; -*-
 
 ;;; Commentary:
 ;;

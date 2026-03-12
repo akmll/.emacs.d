@@ -1,4 +1,4 @@
-;;; init-yaml.el --- YAML related configuration
+;;; init-yaml.el --- YAML related configuration  -*- lexical-binding: t; -*-
 
 ;;; Commentary:
 ;;

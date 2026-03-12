@@ -1,4 +1,4 @@
-;;; init-cc-mode.el --- Initialize C/C++ mode
+;;; init-cc-mode.el --- Initialize C/C++ mode  -*- lexical-binding: t; -*-
 
 ;;; Commentary:
 ;;

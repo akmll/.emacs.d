@@ -1,4 +1,4 @@
-;;; init-batch.el --- Configure packages to edit batch scripts
+;;; init-batch.el --- Configure packages to edit batch scripts  -*- lexical-binding: t; -*-
 
 ;;; Commentary:
 ;;

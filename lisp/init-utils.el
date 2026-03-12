@@ -1,4 +1,4 @@
-;;; init-utils.el --- Provides utilities for initialization
+;;; init-utils.el --- Provides utilities for initialization  -*- lexical-binding: t; -*-
 
 ;;; Commentary:
 ;;; Code:

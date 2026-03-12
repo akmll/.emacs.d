@@ -1,4 +1,4 @@
-;;; init-hex.el --- Provide initialization to hex edit/view related functions
+;;; init-hex.el --- Provide initialization to hex edit/view related functions  -*- lexical-binding: t; -*-
 
 ;;; Commentary:
 ;;

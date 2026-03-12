@@ -1,4 +1,4 @@
-;;; init-site-lisp.el --- Load manually installed packages
+;;; init-site-lisp.el --- Load manually installed packages  -*- lexical-binding: t; -*-
 ;;; Commentary:
 ;;; Code:
 

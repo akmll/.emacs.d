@@ -1,4 +1,4 @@
-;;; init-python.el --- Phthon editing
+;;; init-python.el --- Phthon editing  -*- lexical-binding: t; -*-
 ;;; Commentary:
 ;;; Code:
 

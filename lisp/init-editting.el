@@ -1,4 +1,4 @@
-;;; init-editting.el
+;;; init-editting.el  -*- lexical-binding: t; -*-
 ;;; Commentary:
 ;;; Code:
 

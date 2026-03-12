@@ -1,4 +1,4 @@
-;;; init-org.el --- Provide configuration of org-mode
+;;; init-org.el --- Provide configuration of org-mode  -*- lexical-binding: t; -*-
 
 ;;; Commentary:
 ;;; Code:

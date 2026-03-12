@@ -1,4 +1,4 @@
-;;; init-sessions.el --- Save and restore sessions
+;;; init-sessions.el --- Save and restore sessions  -*- lexical-binding: t; -*-
 ;;; Commentary:
 ;;; Code:
 
