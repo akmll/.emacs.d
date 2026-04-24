@@ -38,6 +38,11 @@
                                       "--rename-file-limit=0"
                                       "--query-driver=**/arm-none-eabi-*"))))
 
+(with-eval-after-load 'compile
+  (add-to-list 'compilation-error-regexp-alist-alist
+               '(zap/iar "^\"\\(.*\\)\",\\([0-9]+\\)\\s-+\\(?:Error\\|Warning\\)\\[[a-zA-Z0-9].*?\\]:" 1 2 nil (3)))
+  (add-to-list 'compilation-error-regexp-alist 'zap/iar))
+
 (setq-default c-mark-wrong-style-of-comment t)
 (setq-default c-default-style "zap")
 
