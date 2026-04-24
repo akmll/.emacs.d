@@ -44,6 +44,7 @@
     (require 'dired-x))
   (setq-default dired-dwim-target t)
   (setq-default dired-recursive-deletes 'top)
+  (setq-default dired-listing-switches "-Agho --group-directories-first")
   (define-key dired-mode-map (kbd "C-c C-q") 'wdired-change-to-wdired-mode))
 
 (use-package hl-todo
