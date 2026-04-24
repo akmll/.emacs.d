@@ -120,10 +120,10 @@
         try-expand-dabbrev-all-buffers
         try-expand-dabbrev-from-kill))
 
-;; company
 (setq tab-always-indent 'complete)
 (add-to-list 'completion-styles 'initials t)
 
+;; company
 (use-package company
   :ensure t
   :hook (after-init . global-company-mode)
@@ -173,10 +173,45 @@
                                 (comment-or-uncomment-region
                                  (line-beginning-position) (line-end-position))))
 
+;; Copy current line
+(defun zap/copy-current-line ()
+  (interactive)
+  (let ((beg (line-beginning-position))
+        (end (line-beginning-position 2)))
+    (copy-region-as-kill beg end)
+    (if (called-interactively-p 'interactive)
+        (message "Copied line"))))
+
+(global-set-key (kbd "M-W") 'zap/copy-current-line)
+
 (setq confirm-kill-emacs 'yes-or-no-p)
 
 ;; Replace yes-or-no to y-or-n
 (fset 'yes-or-no-p 'y-or-n-p)
+
+(defun zap/move-beginning-of-line (arg)
+  "Move point back to indentation or beginning of line.
+
+First move to the beginning of the line. If pont is already at
+the beginning of line, move to the first non-whitespace character.
+
+If ARG is not nil or 1, move forward ARG - 1 lines first.
+If point reaches the beginning or end of buffer, it stops there.
+"
+  (interactive "^p")
+  (or arg (setq arg 1))
+
+  ;; Move by lines if ARG is not 1
+  (if (/= arg 1)
+      (let ((line-move-visual nil))
+        (line-move (1- arg) t)))
+
+  (let ((orig-point (point)))
+    (move-beginning-of-line 1)
+    (when (= orig-point (point))
+      (back-to-indentation))))
+
+(global-set-key [remap move-beginning-of-line] 'zap/move-beginning-of-line)
 
 (provide 'init-misc)
 ;;; init-misc.el ends here
