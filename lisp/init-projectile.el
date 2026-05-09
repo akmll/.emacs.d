@@ -11,10 +11,16 @@
   (projectile-indexing-method 'alien)
   (projectile-enable-caching t)
   :config
-  (setq projectile-git-submodule-command nil)
+  (setq projectile-project-root-functions
+        '(projectile-root-top-down
+          projectile-root-top-down-recurring
+          projectile-root-local
+          projectile-root-marked
+          projectile-root-bottom-up))
   (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
   (use-package ibuffer-projectile
-    :ensure t))
+    :ensure t)
+  )
 
 (provide 'init-projectile)
 ;; init-projectile.el ends here
