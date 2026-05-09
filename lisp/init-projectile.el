@@ -11,6 +11,7 @@
   (projectile-indexing-method 'alien)
   (projectile-enable-caching t)
   :config
+  (setq projectile-git-submodule-command nil)
   (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
   (use-package ibuffer-projectile
     :ensure t))

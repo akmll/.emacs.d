@@ -46,17 +46,6 @@
 (setq-default c-mark-wrong-style-of-comment t)
 (setq-default c-default-style "zap")
 
-(defun zap/c-mode-hook ()
-  (setq tab-width 4)
-  (setq comment-column 40)
-  (setq flymake-diagnostic-functions nil)
-
-  (yas-minor-mode)
-  (eglot-ensure)
-  )
-
-(add-hook 'c-mode-common-hook 'zap/c-mode-hook)
-
 (defun eglot-clangd-find-other-file (&optional new-window)
   (interactive "P")
   (let
@@ -69,8 +58,20 @@
     (funcall (if new-window #'find-file-other-window #'find-file)
              (eglot--uri-to-path other-file))))
 
-(global-set-key (kbd "C-c o") 'eglot-clangd-find-other-file)
-(global-set-key (kbd "<mouse-4>") 'xref-pop-marker-stack)
+(defun eglot-clangd-find-other-file-other-window ()
+  (interactive)
+  (eglot-clangd-find-other-file t))
+
+(defun zap/c-mode-hook ()
+  (setq tab-width 4)
+  (setq comment-column 40)
+  (setq flymake-diagnostic-functions nil)
+
+  (yas-minor-mode)
+  (eglot-ensure)
+  (define-key c-mode-map (kbd "C-c o") 'eglot-clangd-find-other-file))
+
+(add-hook 'c-mode-common-hook 'zap/c-mode-hook)
 
 (provide 'init-cc-mode)
 

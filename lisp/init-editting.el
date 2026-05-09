@@ -54,7 +54,7 @@
 
 (use-package symbol-overlay
   :ensure t
-  :hook (prog-mode . symbol-overlay-mode)
+  :hook (prog-mode yaml-ts-mode)
   :config
   (diminish 'symbol-overlay-mode)
   (define-key symbol-overlay-mode-map (kbd "M-i") 'symbol-overlay-put)
@@ -122,7 +122,7 @@
   :bind
   ("C-<" . mc/mark-previous-like-this)
   ("C->" . mc/mark-next-like-this)
-  ("C-c C-<" . mc/mark-all-line-this)
+  ("C-c C-<" . mc/mark-all-like-this)
   ("C-c m r" . 'set-rectangular-region-anchor)
   ("C-c m c" . mc/edit-lines)
   ("C-c m e" . mc/edit-ends-of-lines)
