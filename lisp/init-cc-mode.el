@@ -6,13 +6,6 @@
 ;;; Code:
 
 (require 'compile)
-;; Add compilation error regex for IAR Embedded Workbench
-(with-eval-after-load 'compile
-  (let ((defn '(iarbuild
-                "\\(^.+\\.\\(?:cpp\\|c\\|hpp\\|h\\)\\)(\\([0-9]+\\))\\s-+:\\s-+\\(?:\\(Error\\)\\|\\(Warning\\)\\|\\(Info\\)\\).*"
-                1 2 (3 . 4))))
-    (add-to-list 'compilation-error-regexp-alist-alist defn)
-    (add-to-list 'compilation-error-regexp-alist (car defn))))
 
 ;; Initialize CC-mode style
 (c-add-style "zap"
@@ -40,8 +33,15 @@
 
 (with-eval-after-load 'compile
   (add-to-list 'compilation-error-regexp-alist-alist
-               '(zap/iar "^\"\\(.*\\)\",\\([0-9]+\\)\\s-+\\(?:Error\\|Warning\\)\\[[a-zA-Z0-9].*?\\]:" 1 2 nil (3)))
-  (add-to-list 'compilation-error-regexp-alist 'zap/iar))
+               '(zap/iar
+                 "^\"\\(.*\\)\",\\([0-9]+\\)\\s-+\\(?:\\(Error\\)\\|\\(Warning\\)\\|\\(Info\\)\\)\\[\\([a-zA-Z0-9].*?\\)\\]:"
+                 1 2 nil (4 . 5)))
+  (add-to-list 'compilation-error-regexp-alist-alist
+               '(zap/iarbuild
+                 "^\\(.*?\\)\(\\([0-9]+\\)\)\\s-+:\\s-+\\(?:\\(Error\\)\\|\\(Warning\\)\\|\\(Info\\)\\)\\[\\([a-zA-Z0-9]+\\)\\]:"
+                 1 2 nil (4 . 5)))
+  (add-to-list 'compilation-error-regexp-alist 'zap/iar)
+  (add-to-list 'compilation-error-regexp-alist 'zap/iarbuild))
 
 (setq-default c-mark-wrong-style-of-comment t)
 (setq-default c-default-style "zap")
