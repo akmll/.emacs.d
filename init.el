@@ -36,6 +36,9 @@
 (require 'init-hex)
 (require 'init-csharp)
 (require 'init-batch)
+(require 'init-json)
+(require 'init-cov)
+(require 'init-copilot)
 
 ;; Start server
 (add-hook 'after-init-hook

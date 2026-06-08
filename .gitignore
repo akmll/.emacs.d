@@ -30,3 +30,4 @@
 /tree-sitter
 /org-persist
 *.eld
+/.mc-lists.el

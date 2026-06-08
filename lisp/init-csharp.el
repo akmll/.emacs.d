@@ -12,6 +12,8 @@
   :ensure t
   :hook (csharp-mode . zap/csharp-mode-hook))
 
+(add-to-list 'auto-mode-alist '("\\.csproj\\'" . nxml-mode))
+
 (provide 'init-csharp)
 
 ;;; init-csharp.el ends here
