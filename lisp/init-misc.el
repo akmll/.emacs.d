@@ -123,25 +123,6 @@
 (setq tab-always-indent 'complete)
 (add-to-list 'completion-styles 'initials t)
 
-;; company
-(use-package company
-  :ensure t
-  :hook (after-init . global-company-mode)
-  :config
-  (dolist (backend '(company-eclim company-semantic))
-    (delq backend company-backends))
-  (diminish 'company-mode)
-  (define-key company-mode-map (kbd "M-/") 'company-complete)
-  (define-key company-active-map (kbd "M-/") 'company-other-backend)
-  (define-key company-active-map (kbd "C-n") 'company-select-next)
-  (define-key company-active-map (kbd "C-p") 'company-select-previous)
-  (setq-default company-dabbrev-other-buffers 'all)
-  (setq-default company-tooltip-align-annotations t)
-  (global-set-key (kbd "C-M-/") 'company-complete)
-  (use-package company-quickhelp
-    :ensure t
-    :hook (after-init . company-quickhelp-mode)))
-
 (use-package abbrev
   :ensure nil
   :config
