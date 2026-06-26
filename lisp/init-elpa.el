@@ -12,10 +12,12 @@
 (setq package-gnupghome-dir (expand-file-name "gnupg" package-user-dir))
 
 ;;; Standard package repositories
-(add-to-list 'package-archives '( "melpa-cn" . "https://mirrors.ustc.edu.cn/elpa/melpa/") t)
+(setq package-archives '(("gnu" . "https://mirrors.ustc.edu.cn/elpa/gnu/")
+			 ("melpa" . "https://mirrors.ustc.edu.cn/elpa/melpa/")
+			 ("nongnu" . "https://mirrors.ustc.edu.cn/elpa/nongnu/")))
 (setq package-archive-priorities '(("gnu" . 10)
                                    ("nognu" . 5)
-                                   ("melpa-cn" . 0)))
+                                   ("melpa" . 0)))
 
 (require 'use-package)
 

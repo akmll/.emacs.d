@@ -7,6 +7,8 @@
 ;;; Code:
 
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
+(setq user-emacs-custom-directory (expand-file-name ".emacs.custom.d" "~/"))
+(setq custom-file (expand-file-name "custom.el" user-emacs-custom-directory))
 
 ;; Bootstrap config
 (require 'init-utils)
@@ -39,6 +41,7 @@
 (require 'init-json)
 (require 'init-cov)
 (require 'init-copilot)
+(require 'init-theme)
 
 ;; Start server
 (add-hook 'after-init-hook
@@ -48,12 +51,7 @@
               (server-start))))
 
 ;; Re-direct custom configuration file
-(setq custom-file (expand-file-name "custom.el" user-emacs-directory))
-(when (file-exists-p custom-file)
-  (load custom-file))
-
-;; theme must be initialized after custom configration loaded
-(require 'init-theme)
+(load custom-file t)
 
 (provide 'init)
 ;; init.el ends here
