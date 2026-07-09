@@ -69,7 +69,7 @@
 
   (yas-minor-mode)
   (eglot-ensure)
-  (define-key c-mode-map (kbd "C-c o") 'eglot-clangd-find-other-file))
+  (define-key c-mode-base-map (kbd "C-c o") 'eglot-clangd-find-other-file))
 
 (add-hook 'c-mode-common-hook 'zap/c-mode-hook)
 
