@@ -1,4 +1,4 @@
-;;; init-projectile.el  -*- lexical-binding: t; -*-
+;;; init-projectile.el --- Initialize projectile mode -*- lexical-binding: t; -*-
 ;;; Commentary:
 ;;; Code:
 
@@ -6,11 +6,10 @@
   :ensure t
   :hook
   (after-init . projectile-mode)
-  :custom
-  (projectile-mode-line-prefix " Proj")
-  (projectile-indexing-method 'alien)
-  (projectile-enable-caching t)
   :config
+  (setq projectile-mode-line-prefix " Proj")
+  (setq projectile-indexing-method 'native)
+  (setq projectile-enable-caching 'persistent)
   (setq projectile-project-root-files-bottom-up
         (remove ".git" projectile-project-root-files-bottom-up))
   (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
@@ -19,4 +18,4 @@
   )
 
 (provide 'init-projectile)
-;; init-projectile.el ends here
+;;; init-projectile.el ends here
