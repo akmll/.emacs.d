@@ -23,6 +23,7 @@
   (fullframe magit-status magit-mode-quit-window))
 
 (autoload 'vc-git-root "vc-git")
+(setq vc-handled-backends '(Git SVN))
 
 ;; git-svn support, copied from Purcell's configuration
 (with-eval-after-load 'compile
