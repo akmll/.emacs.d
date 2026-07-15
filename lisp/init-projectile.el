@@ -14,7 +14,13 @@
         (remove ".git" projectile-project-root-files-bottom-up))
   (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
   (use-package ibuffer-projectile
-    :ensure t)
+    :ensure t
+    :hook
+    (ibuffer . (lambda ()
+                (ibuffer-projectile-set-filter-groups)
+                (unless (eq ibuffer-sorting-mode 'alphabetic)
+                  (ibuffer-do-sort-by-alphabetic))))
+    )
   )
 
 (provide 'init-projectile)
